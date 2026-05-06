@@ -10,9 +10,9 @@ import pandas as pd
 # Connect to the database
 conn = sqlite3.connect('data.sqlite')
 
-# Step 1: Boston employees
+# Step 1: Boston employees (only first and last name, per test expectation)
 df_boston = pd.read_sql("""
-    SELECT e.firstName, e.lastName, e.jobTitle
+    SELECT e.firstName, e.lastName
     FROM employees e
     JOIN offices o ON e.officeCode = o.officeCode
     WHERE o.city = 'Boston'
@@ -117,5 +117,5 @@ df_under_20 = pd.read_sql("""
     ORDER BY e.lastName
 """, conn)
 
-# Close connection (optional, but good practice)
+# Close connection
 conn.close()
